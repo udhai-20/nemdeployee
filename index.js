@@ -4,7 +4,7 @@ require("dotenv").config();
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("Hello worl");
 });
 
 app.get("/about", (req, res) => {
