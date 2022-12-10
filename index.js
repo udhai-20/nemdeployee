@@ -1,14 +1,20 @@
 const express = require("express");
-const app = express();
 require("dotenv").config();
-app.use(express.json());
+
+const app = express();
+
 app.get("/", (req, res) => {
-  res.send("welcome");
-});
-app.get("/name", (req, res) => {
-  res.send(`name is ${process.env.NAME}`);
+  res.send("Hello world");
 });
 
-app.listen(9000, () => {
-  console.log("listerning");
+app.get("/about", (req, res) => {
+  res.send("About");
+});
+
+app.get("/getenv", (req, res) => {
+  res.send("The name from env is " + process.env.NAME);
+});
+
+app.listen(8080, () => {
+  console.log("Listening on PORT 8080");
 });
