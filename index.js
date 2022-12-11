@@ -1,6 +1,5 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
-const { connection } = require("./config/db");
 const userRouter = require("./Routes/user.route");
 const notesRouter = require("./Routes/note.route");
 const { authentication } = require("./middleware/authentication");
