@@ -1,19 +1,17 @@
 const express = require("express");
 const { connection } = require("./config/db");
-const userRouter = require("./Routes/user.route");
-const notesRouter = require("./Routes/note.route");
-const { authentication } = require("./middleware/authentication");
-const cors = require("cors");
 const app = express();
-app.use(cors());
+require("dotenv").config();
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("welcome");
 });
-app.use("/users", userRouter);
-app.use(authentication);
-app.use("/notes", notesRouter);
-
+app.get("/about", (req, res) => {
+  res.send("about");
+});
+app.get("/name", (req, res) => {
+  res.send(process.env.NAME);
+});
 app.listen(8016, async () => {
   try {
     await connection;
