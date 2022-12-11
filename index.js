@@ -1,17 +1,24 @@
 const express = require("express");
 const { connection } = require("./config/db");
+const userRouter = require("./Routes/user.route");
+const notesRouter = require("./Routes/note.route");
+const { authentication } = require("./middleware/authentication");
+const cors = require("cors");
 const app = express();
-require("dotenv").config();
+app.use(cors());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("welcome");
 });
-app.get("/about", (req, res) => {
-  res.send("about");
-});
-app.get("/name", (req, res) => {
-  res.send(process.env.NAME);
-});
-app.listen(8016, () => {
-  console.log("port running the local mongodb http://localhost:8016/");
+app.use("/users", userRouter);
+app.use(authentication);
+app.use("/notes", notesRouter);
+
+app.listen(8016, async () => {
+  try {
+    await connection;
+    console.log("port running the local mongodb http://localhost:8016/");
+  } catch (err) {
+    console.log("connection to db is failed");
+  }
 });
