@@ -12,11 +12,6 @@ app.get("/about", (req, res) => {
 app.get("/name", (req, res) => {
   res.send(process.env.NAME);
 });
-app.listen(8016, async () => {
-  try {
-    await connection;
-    console.log("port running the local mongodb http://localhost:8016/");
-  } catch (err) {
-    console.log("connection to db is failed");
-  }
+app.listen(8016, () => {
+  console.log("port running the local mongodb http://localhost:8016/");
 });
