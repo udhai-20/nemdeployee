@@ -64,7 +64,7 @@ userRTouter.post("/login", async (req, res) => {
         if (result) {
           const token = jwt.sign({ userID: user[0]._id }, "hello");
           console.log("token:", token);
-          res.send({ msg: "successfull", token: token, fname: userdata });
+          res.send({ msg: "successfull", token: token, userdata: userdata });
         } else {
           res.status(404).send({ msg: "failure", token: null, user: null });
         }
