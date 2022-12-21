@@ -54,7 +54,7 @@ userRTouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserModel.find({ email });
-    let userdata = user[0]._id;
+    let userdata = user[0].fname;
     console.log("userdata:", userdata);
     if (user) {
       const hashed_password = user[0].password;
@@ -64,7 +64,7 @@ userRTouter.post("/login", async (req, res) => {
         if (result) {
           const token = jwt.sign({ userID: user[0]._id }, "hello");
           console.log("token:", token);
-          res.send({ msg: "successfull", token: token, fname: userdata.fname });
+          res.send({ msg: "successfull", token: token, fname: userdata });
         } else {
           res.status(404).send({ msg: "failure", token: null, user: null });
         }
